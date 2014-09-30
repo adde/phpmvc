@@ -7,6 +7,14 @@ $app->navbar->configure(ANAX_APP_PATH . 'config/navbar_me.php');
 
 $app->url->setUrlType(\Anax\Url\CUrl::URL_CLEAN);
 
+// Setup comment controller
+$di->set('CommentController', function() use ($di) {
+    $controller = new Phpmvc\Comment\CommentController();
+    $controller->setDI($di);
+    return $controller;
+});
+
+// Route to start page
 $app->router->add('', function() use ($app) {
   $app->theme->setTitle("Om mig");
 
@@ -17,11 +25,17 @@ $app->router->add('', function() use ($app) {
   $byline = $app->textFilter->doFilter($byline, 'shortcode, markdown');
 
   $app->views->add('me/page', [
-      'content' => $content,
-      'byline' => $byline,
+    'content' => $content,
+    'byline' => $byline,
+  ]);
+
+  $app->dispatcher->forward([
+    'controller' => 'comment',
+    'action'     => 'view',
   ]);
 });
 
+// Route to redovisning
 $app->router->add('redovisning', function() use ($app) {
   $app->theme->setTitle("Redovisning");
 
@@ -32,8 +46,13 @@ $app->router->add('redovisning', function() use ($app) {
   $byline = $app->textFilter->doFilter($byline, 'shortcode, markdown');
 
   $app->views->add('me/page', [
-      'content' => $content,
-      'byline' => $byline,
+    'content' => $content,
+    'byline' => $byline,
+  ]);
+
+  $app->dispatcher->forward([
+    'controller' => 'comment',
+    'action'     => 'view',
   ]);
 });
 
@@ -70,18 +89,19 @@ $app->router->add('dice/roll', function() use ($app) {
 
 });
 
+// Route to page source
 $app->router->add('source', function() use ($app) {
   $app->theme->addStylesheet('css/source.css');
   $app->theme->setTitle("Källkod");
 
   $source = new \Mos\Source\CSource([
-      'secure_dir' => '..',
-      'base_dir' => '..',
-      'add_ignore' => ['.htaccess'],
+    'secure_dir' => '..',
+    'base_dir' => '..',
+    'add_ignore' => ['.htaccess'],
   ]);
 
   $app->views->add('me/source', [
-      'content' => $source->View(),
+    'content' => $source->View(),
   ]);
 });
 

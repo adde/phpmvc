@@ -4,6 +4,7 @@
 <meta charset='utf-8'/>
 <title><?=$title . $title_append?></title>
 <?php if(isset($favicon)): ?><link rel='icon' href='<?=$this->url->asset($favicon)?>'/><?php endif; ?>
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <?php foreach($stylesheets as $stylesheet): ?>
 <link rel='stylesheet' type='text/css' href='<?=$this->url->asset($stylesheet)?>'/>
 <?php endforeach; ?>
