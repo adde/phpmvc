@@ -72,7 +72,7 @@ $app->router->add('dice/roll', function() use ($app) {
 
 $app->router->add('source', function() use ($app) {
   $app->theme->addStylesheet('css/source.css');
-  $app->theme->setTitle("Redovisning");
+  $app->theme->setTitle("Källkod");
 
   $source = new \Mos\Source\CSource([
       'secure_dir' => '..',
