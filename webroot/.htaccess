@@ -6,9 +6,9 @@
 
   # RewriteRules based on host
   RewriteCond %{HTTP_HOST} ^s1.add3.nu$
-  RewriteRule . - [E=REWRITEBASE:/dbwebb/phpmvc/kmom01/webroot/]
+  RewriteRule . - [E=REWRITEBASE:/dbwebb/phpmvc/kmom02/webroot/]
   RewriteCond %{HTTP_HOST} !^s1.add3.nu$
-  RewriteRule . - [E=REWRITEBASE:/~anjh13/phpmvc/kmom01/webroot/]
+  RewriteRule . - [E=REWRITEBASE:/~anjh13/phpmvc/kmom02/webroot/]
 
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
