@@ -1,0 +1,17 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine on
+
+  # Must use RewriteBase on www.student.bth.se, Rewritebase for url /~mos/test is /~mos/test/
+  #RewriteBase /change/this/to/site/base/url/if/needed/
+
+  # RewriteRules based on host
+  RewriteCond %{HTTP_HOST} ^s1.add3.nu$
+  RewriteRule . - [E=REWRITEBASE:/dbwebb/phpmvc/kmom01/webroot/]
+  RewriteCond %{HTTP_HOST} !^s1.add3.nu$
+  RewriteRule . - [E=REWRITEBASE:/~anjh13/phpmvc/kmom01/webroot/]
+
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+
+  RewriteRule (.*) %{ENV:REWRITEBASE}index.php/$1 [NC,L]
+</IfModule>
