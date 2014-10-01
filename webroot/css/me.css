@@ -41,13 +41,13 @@ a:hover {
 
 .comment .btn-edit {
   position: absolute;
-  top: 30px;
+  top: 32px;
   right: 40px;
 }
 
 .comment .btn-delete {
   position: absolute;
-  top: 29px;
+  top: 31px;
   right: 15px;
 }
 
