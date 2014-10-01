@@ -17,7 +17,6 @@
                 <input type='submit' name='doEdit' value='Edit comment' onClick="this.form.action = '<?=$this->url->create('comment/edit')?>?id=<?=$id?>&amp;page=<?=$page?>'"/>
             <?php endif; ?>
         </p>
-        
         <output><?=$output?></output>
         </fieldset>
     </form>
