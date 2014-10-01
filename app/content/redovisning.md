@@ -37,3 +37,48 @@ Det kan vara praktiskt om man tänker sig ha en massa olika teman men annars had
 <strong>Övrigt</strong>
 
 Slutligen lade jag upp min me-sida på github: [https://github.com/adde/phpmvc](https://github.com/adde/phpmvc). Jag vet inte om hela kursen bygger på den här basen men om den gör det kan det kanske vara lämpligt att skapa en ny branch för varje moment i samma repository.
+
+
+
+Kmom02: Kontroller och modeller
+------------------------------------
+
+<strong>Hur känns det att jobba med Composer?</strong>
+
+<em>Composer</em> hade jag installerat sedan tidigare så det var bara att tuta och köra.
+Det är ett smidigt verktyg för att dra in diverse paket i sitt projekt.
+Det enda man behöver hålla koll på är `composer.json` och se till att inkludera composers autoloader så sköter det sig självt.
+<em>Composer</em> i sig är väldigt enkelt att använda, det gäller bara att veta vilka paket man ska installera.
+
+<strong>Vad tror du om de paket som finns i Packagist, är det något du kan tänka dig att använda och hittade du något spännande att inkludera i ditt ramverk?</strong>
+
+Det finns en hel del paket på <em>Packagist</em>, man behöver som sagt veta lite vad man är ute efter.
+Jag har ingen aning om kvaliteten på paketen som ligger uppe men en metod som brukar fungera är att sortera efter popläritet.
+Spontant har jag inte hittat något på <em>Packagist</em> som jag skulle behöva.
+Jag skulle dock kunna tänka mig att installera Laravels ORM-modul <em>Eloquent</em>. Ett trevligt paket för att hantera objektrelaterade databaser.
+
+<strong>Hur var begreppen att förstå med klasser som kontroller som tjänster som dispatchas, fick du ihop allt?</strong>
+
+Jag måste erkänna att det var lite rörigt till en början men efter att ha läst guiden några gånger fick jag ordning på det.
+Det kändes bara en aning konstigt att ha kontroller lite var som helst och att de var tvungna att registreras som tjänster i `CDIFactoryDefault.php`.
+Med andra ramverk är man van vid att skapa kontrollern i en viss mapp, sedan registrera en route som pekar på den kontrollern och så fungerar allt.
+Det går ju helt klart bra så här också, det blir möjligtvis en aning mer flexibelt.
+
+<strong>Hittade du svagheter i koden som följde med phpmvc/comment? Kunde du förbättra något?</strong>
+
+Jag hittade inget direkt fel i koden som jag behövde fixa.
+Man kan kanske lägga in lite fler och bättre felkontroller av data vid add/update/delete av kommentarer.
+Sedan hade man självklart kunnat lägga till kod för att hindra spam men det blir ju inte aktuellt förrän en databas är inblandad.
+Inom tidsramen för det här momentet kändes det lagom med kraven för kommentarsystemet.
+Fokus låg ju trots allt på att få ihop kontroller och modeller.
+
+<strong>Övrigt</strong>
+
+När jag väl hade kommit underfund med hur det fungerar med DI-Factoryn, Dispatchern i relation till kontrollerna var det inga problem att lägga till de nya metoder som behövdes för edit och remove.
+Ändrade lite grand i formulären för att kunna formatera kommentarerna med CSS. Sedan lade jag till knappar för edit och delete som pekar på kontrollerns actions.
+Jag gjorde inga drastiska ändringar i CSS:n men snyggade till formulärfälten en aning då standardfälten är rätt så tråkiga.
+
+För att få till unika kommentarer per sida valde jag att använda sidans adress som nyckel i sessionen.
+Eftersom man kan lägga till eller ta bort ett slash i url:n valde jag att alltid trimma bort ett eventuellt slash innan man använder strängen.
+Då blir det en aning stabilare.
+<em>Disqus</em> använder sig i och för sig också av url (tillsammans med ett par andra parametrar) för att identifiera rätt tråd för rätt sida så det bör ju vara en beprövad metod.
